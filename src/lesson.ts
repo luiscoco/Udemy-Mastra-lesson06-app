@@ -96,5 +96,36 @@ export const LESSON = {
       "title": "Generation messages",
       "url": "https://mastra.ai/reference/agents/generate"
     }
+  ],
+  "readmeWorkflow": [
+    {
+      "step": "Validate task data",
+      "component": "src/lab.ts",
+      "behavior": "Accept a supported audience/style and a bounded article."
+    },
+    {
+      "step": "Inspect reusable instructions",
+      "component": "src/mastra/agents.ts",
+      "behavior": "Define the summarizer’s stable role, grounding rule and exactly-three-bullets contract."
+    },
+    {
+      "step": "Build user task",
+      "component": "src/lab.ts",
+      "behavior": "Encode article content as task data separately from reusable agent instructions."
+    },
+    {
+      "step": "Inspect prompt boundary",
+      "component": "src/lab.ts",
+      "behavior": "Return the assembled instructions/task without pretending a summary was generated."
+    }
+  ],
+  "liveWorkflow": [
+    "The registered summarizer receives the supplied article, audience, style and question.",
+    "generate() produces real text; checkSummary() checks exactly three bullet lines and no preface."
+  ],
+  "outcomeNotes": [
+    "The local lab is a prompt-construction exercise; it does not fabricate a summary.",
+    "The bullet check validates structure. A student must compare the statements with the article.",
+    "Unsupported styles fail input validation."
   ]
 } satisfies LessonMetadata;
